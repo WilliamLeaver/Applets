@@ -1,10 +1,13 @@
 import React from 'react';
-
+import Link from 'next/link';
 const Footer = () => {
   return (
-    <footer className="rounded bg-stone-100 text-green-700 p-4 text-center">
-      <p className="">All Images generated locally using Stable Diffusion & Prompt Engineering</p>
-      <p className="text-xs">Educational links and excerts pulled from Leafly.com</p>
+    <footer className="rounded bg-neutral text-center p-2">
+      <p className="">Hope you enjoy!</p>
+      <Link className="btn rounded bg-secondary text-secondary-content" href="https://codepen.io/chalda/pen/wRJYmz">One div flame 🔥 | by: Chalda Pnuzig</Link>
+      <Link className="btn rounded bg-secondary text-secondary-content" href="https://codepen.io/jkantner/pen/gKRKKb">CSS Blend Mode Fire | by: Jon Kantner </Link>
+      <Link className="btn rounded bg-secondary text-secondary-content" href="https://apps.apple.com/us/app/a-dark-room/id736683061">Ember Inspiration | A Dark Room</Link>
+      <p className="text-xs"></p>
     </footer>
   );
 };
