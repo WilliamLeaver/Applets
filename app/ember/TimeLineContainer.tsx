@@ -17,7 +17,7 @@ const TimeLineContainer: React.FC<TimeLineContainerProps> = ({timeline}) => {
   return (
     <>
         {timeline < 30 ? null : (
-        <div className="w-1/5 p-2 border-2 rounded-lg">
+        <div className="w-1/2 p-2 border-2 rounded-lg">
             <h1 className='font-extrabold text-lg text-center border-b border-dotted'>Thoughts</h1>
             {checkTime(timeline)}
         </div> )}

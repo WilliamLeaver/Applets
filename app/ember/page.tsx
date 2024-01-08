@@ -1,8 +1,8 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import  FireContainer  from './FireContainer'
+import FireContainer from './FireContainer'
 import TimeLineContainer from './TimeLineContainer'
-import {Inventory, bag} from './Inventory'
+import { Inventory, bag } from './Inventory'
 
 interface Game {
     fire: number
@@ -61,27 +61,37 @@ const Page = () => {
         // Cleanup
         return () => clearInterval(intervalId);
     }, []);
-    
+
     return (
-        <div className='my-2 w-full h-screen flex flex-col justify-center bg-black rounded-lg items-center'>
+        <div className='my-2 w-full h-screen flex flex-col lg:flex-row justify-center bg-black rounded-lg items-center'>
+            <div className='lg:w-1/3 flex flex-col justify-center items-center'>
+                fire lvl: {game.fire}
+                timeline: {game.timeline}
+                gameover?: {game.gameover}
+            </div>
+            <div className='lg:w-1/3 flex flex-col justify-center items-center'>
             <FireContainer fire={fire} />
-            <div>
-            {gameover === false ? (
-            <div onClick={addfire} className='btn bg-gradient-radial text-3xl w-max h-max p-2 bg-black rounded-lg flex items-center justify-center'>
-                Stoke
-            </div>
-            ) : (
-            <div onClick={NewGame} className='btn bg-gradient-radial text-3xl w-max h-max p-2 bg-black rounded-lg flex items-center justify-center'>
-                New Game     
-            </div>
-            )}
-            {}
+            <div className='my-2 pt-5'>
+                {gameover === false ? (
+                    <div onClick={addfire} className='btn bg-gradient-radial text-3xl w-max h-max p-2 bg-black rounded-lg flex items-center justify-center'>
+                        Stoke
+                    </div>
+                ) : (
+                    <div onClick={NewGame} className='btn bg-gradient-radial text-3xl w-max h-max p-2 bg-black rounded-lg flex items-center justify-center'>
+                        New Game
+                    </div>
+                )}
+                
             </div>
             {timeline < 10 ? null : (
-            <div>You have survived {timeline} hours</div>)}
-            <TimeLineContainer timeline={timeline}/>
-            {timeline >= 60 ? (<Inventory />) : null}
+                <div>You have survived {timeline} hours</div>)}
+            </div>
+            <div className='lg:w-1/3 flex flex-col justify-center items-center'>
             
+            <TimeLineContainer timeline={timeline} />
+            {timeline >= 60 ? (<Inventory />) : null}
+            </div>
+
         </div>
     )
 }

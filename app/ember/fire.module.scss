@@ -1,41 +1,105 @@
 
+$fireColor: rgb(255, 80, 0);
+$fireColorT: rgba(255, 80, 0, 0);
+$dur: 1s;
+$blur: 0.02em;
+$fireRad: 3em;
+$parts: 50;
+$partSize: 5em;
 
-.flame{
-	width:150px;
-	height:150px;
-	background:linear-gradient(-45deg, red, orange);
-	border-radius: 150px 150px 0px 150px;
-	transform:rotate(-135deg);
-	animation:.1s flame infinite;
-	filter:blur(10px);
-	position:relative;
-	box-shadow:17px 20px 90px #700;
-	border:45px solid black;
-	border-left-width:25px;
-	border-top-width:25px;
-	
-	&:after,
-	&:before{
-		content:'';
-		width:100px;
-		height:100px;
-		display:block;
-		position:absolute;
-		background:linear-gradient(-45deg, red, orange);
-		animation:.2s flame infinite;
-		transform:scale(.8) rotate(20deg);
-		border-radius: 100px 100px 0px 100px;
-		top:20px;
-	}
-	&:before{
-		top:0;
-		animation-duration:.09s;
-		transform:scale(.9) rotate(-15deg) translate(10px, 0px);
-	}
+.flame {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(-45deg, red, orange);
+  border-radius: 150px 150px 0px 150px;
+  transform: scale(.5)rotate(-135deg);
+  animation: 0.1s flame infinite;
+  filter: blur(20px);
+  position: relative;
+  box-shadow: 117px 100px 150px #700;
+  border: 50px solid black;
+  border-left-width: 25px;
+  border-top-width: 25px;
+
+  &:after,
+  &:before {
+    content: '';
+    width: 50px;
+    height: 50px;
+    display: block;
+    position: absolute;
+	opacity: 40%;
+    background: linear-gradient(-45deg, red, orange);
+    animation: 0.2s flame infinite;
+    transform: scale(0.8) rotate(20deg);
+    border-radius: 150px 150px 0px 150px;
+    top: -20px;
+	left: -20px
+  }
+
+  &:before {
+    top: 0px;
+    animation-duration: 0.09s;
+    transform: scale(0.9) rotate(-15deg) translate(10px, 0px);
+  }
 }
 
-@keyframes flame{
-  0% {height:150px; width:150px;}
-  50% {height:140px; width:140px;}
-  100% {height:150px; width:150px;}
+@keyframes flame {
+  0% {
+    height: 150px;
+    width: 150px;
+  }
+  50% {
+    height: 150px;
+    width: 150px;
+  }
+  100% {
+    height: 150px;
+    width: 150px;
+  }
+}
+
+.fire {
+  font-size: 24px;
+  filter: blur($blur);
+  -webkit-filter: blur($blur);
+  margin: 3em auto 0 auto;
+  position: relative;
+  width: 10em;
+  height: 12em;
+  opacity: 50%;
+  top: 18px;
+}
+
+.particle {
+  animation: rise $dur ease-in infinite;
+  background-image: radial-gradient($fireColor 20%, $fireColorT 70%);
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  width: $partSize;
+  height: $partSize;
+
+  @for $p from 1 through $parts {
+    &:nth-of-type(#{$p}) {
+      animation-delay: $dur * random();
+      left: calc((100% - #{$partSize}) * #{($p - 1) / $parts});
+    }
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10em) scale(0);
+  }
 }
