@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="relative">
       
-      <div>Welcome to this site. I am going to making small apps and putting them here</div>
+      <div className='text-3xl text-center font-bold p-2'>Welcome to this site. I am going to making small apps and putting them here</div>
       
     </main>
   )

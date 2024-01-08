@@ -55,7 +55,6 @@ const Page = () => {
 
         
     }
-    
     const CheckWin = () => {
         if (!(Game.board.includes(0))) {
             console.log("GG no re")
@@ -87,7 +86,7 @@ const Page = () => {
                 <div className='text-lg font-bold w-1/3 text-center'>
                     {turn == true ? ("X's turn") : ("O's turn")}
                 </div>
-                <div className="w-1/3 text-center font-bold text-lg place-items-center">X wins: {scoreX} | O wins: {scoreO}</div>
+                <div className="w-1/3 text-center font-bold text-2xl sm:text-lg place-items-center">X wins: {scoreX} | O wins: {scoreO}</div>
             </div>
             {win == true ? (
             <div className='md:w-1/4 mb-2 text-center font-bold text-xl text-primary-content rounded-md'>
