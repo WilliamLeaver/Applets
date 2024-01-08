@@ -1,7 +1,5 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import './fire.css'
-
 import  FireContainer  from './FireContainer'
 import TimeLineContainer from './TimeLineContainer'
 import {Inventory, bag} from './Inventory'
@@ -12,54 +10,53 @@ interface Game {
     gameover: boolean
 }
 
-let Game: Game = {
+let game: Game = {
     fire: 0,
     timeline: 0,
     gameover: false
 }
 
-const page = () => {
+const Page = () => {
 
-    const [fire, setfire] = useState(Game.fire)
-    const [timeline, setTimeline] = useState(Game.timeline)
-    const [gameover, setGameOver] = useState(Game.gameover)
+    const [fire, setfire] = useState(game.fire)
+    const [timeline, setTimeline] = useState(game.timeline)
+    const [gameover, setGameOver] = useState(game.gameover)
 
     const addfire = () => {
-        if (Game.fire < 100) {
-            if (Game.timeline < 60) {
-                Game.fire++
+        if (game.fire < 100) {
+            if (game.timeline < 60) {
+                game.fire++
             }
             else if (bag.wood > 0) {
-                Game.fire++
+                game.fire++
                 bag.wood--
             }
         }
-        setfire(Game.fire)
+        setfire(game.fire)
     }
 
     const NewGame = () => {
-        Game.timeline = 0
-        Game.gameover = false
-        setTimeline(Game.timeline)
-        setGameOver(Game.gameover)
+        game.timeline = 0
+        game.gameover = false
+        setTimeline(game.timeline)
+        setGameOver(game.gameover)
     }
 
     // Timer for the game
-    let clock = 500; // in ms
     useEffect(() => {
         const intervalId = setInterval(() => {
-            if (Game.timeline > 30 && Game.fire == 0) {
-                Game.gameover = true
-                setGameOver(Game.gameover)
+            if (game.timeline > 30 && game.fire == 0) {
+                game.gameover = true
+                setGameOver(game.gameover)
             }
-            if (Game.fire > 0) {
-                Game.fire--
-                Game.timeline++
+            if (game.fire > 0) {
+                game.fire--
+                game.timeline++
             }
             // Update the dropping value with a decreasing amount
-            setfire(Game.fire);
-            setTimeline(Game.timeline);
-        }, clock);
+            setfire(game.fire);
+            setTimeline(game.timeline);
+        }, 2000);// clock speed in ms
 
         // Cleanup
         return () => clearInterval(intervalId);
@@ -83,10 +80,10 @@ const page = () => {
             {timeline < 10 ? null : (
             <div>You have survived {timeline} hours</div>)}
             <TimeLineContainer timeline={timeline}/>
-            {timeline > 2 ? (<Inventory/>) : null}
+            {timeline >= 60 ? (<Inventory />) : null}
             
         </div>
     )
 }
 
-export default page
+export default Page

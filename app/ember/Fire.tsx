@@ -1,12 +1,13 @@
 import React from 'react'
-import styles from './flame.module.scss'
+import flames from './flame.module.scss'
+import firebase from './fire.module.scss'
 export const Fire = () => { 
     const particles = Array.from({ length: 50 }, (_, index) => index + 1);
   return (
-    <div className={`${styles.fire} realative flex flex-col items-center `}>
-        <div className="flame scale-90"></div>
+    <div className={`${flames.fire} realative flex flex-col items-center`}>
+        <div className={`${firebase.flame} scale-90`}></div>
         {particles.map((index) => (
-                <div key={index} className={`absolute top-5 scale-90 ${styles.particle} z-${index + 1}`}></div>
+                <div key={index} className={`absolute top-5 scale-90 ${flames.particle} z-${index + 1}`}></div>
             ))}
     </div>
  )

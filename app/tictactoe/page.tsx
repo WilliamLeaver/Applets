@@ -21,7 +21,7 @@ let Game: Game = {
 }
 
 
-const page = () => {
+const Page = () => {
 
     const [scoreX, setScoreX] = useState(Game.scoreX)
     const [scoreO, setScoreO] = useState(Game.scoreO)
@@ -104,4 +104,4 @@ const page = () => {
 
 
 
-export default page
+export default Page
