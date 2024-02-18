@@ -3,6 +3,7 @@ import { Fire } from './Fire'
 
 type FireContainerProps = { fire: number };
 
+// TODO: Look into optimization of the code below.
 const FireContainer: React.FC<FireContainerProps> = ({fire}) => {
     const checkLevel = (fire:number) => {
         if (fire < 5) {

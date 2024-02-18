@@ -56,7 +56,7 @@ const Page = () => {
             // Update the dropping value with a decreasing amount
             setfire(game.fire);
             setTimeline(game.timeline);
-        }, 2000);// clock speed in ms
+        }, 1000);// clock speed in ms
 
         // Cleanup
         return () => clearInterval(intervalId);
@@ -65,9 +65,7 @@ const Page = () => {
     return (
         <div className='my-2 w-full h-screen flex flex-col lg:flex-row justify-center bg-black rounded-lg items-center'>
             <div className='lg:w-1/3 flex flex-col justify-center items-center'>
-                fire lvl: {game.fire}
-                timeline: {game.timeline}
-                gameover?: {game.gameover}
+                
             </div>
             <div className='lg:w-1/3 flex flex-col justify-center items-center'>
             <FireContainer fire={fire} />
